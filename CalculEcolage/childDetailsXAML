@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CalculEcolage.ChildDetails">
+    <ContentPage.Content>
+        <StackLayout Margin="50,50,50,50">
+            <!-- Parameters -->
+            <StackLayout Orientation="Vertical">
+                <Label x:Name="ChildNameValue" FontSize="40"/>
+                <!-- Year Entry block -->
+                <StackLayout x:Name="YearEntryBlock" Orientation="Horizontal" >
+                    <Label x:Name="YearLabel" Text="Year"></Label>
+                    <Entry x:Name="YearEntry" Text="{Binding yearName}"/>
+                    <Label x:Name="errorYearMessage" TextColor="Red" FontAttributes="Italic" />
+                </StackLayout>
+                <!-- Mandatory Fees -->
+                <Label x:Name="MandatoryFeesLabel" Text="Mandatory Fees"/>
+                <StackLayout Orientation="Horizontal">
+                    <!--Label Column-->
+                    <StackLayout x:Name="labelMandatoryColumn" Orientation="Vertical">
+                        <Label x:Name="enrolementFeeLabel" Text="EnrolementFee"></Label>
+                        <Label x:Name="tuitionFeesLabel" Text="TuitionFees"></Label>
+                        <Label x:Name="fixedChargesLabel" Text="FixedCharges"></Label>
+                        <Label x:Name="externalExaminationFeesLabel" Text="ExternalExaminationFees"></Label>
+                    </StackLayout>
+                    <!-- Mandatory Fees -->
+                    <!--Value Column-->
+                    <StackLayout x:Name="ValueColumn" Orientation="Vertical">
+                        <Label x:Name="enrolementFeeValue" ></Label>
+                        <Label x:Name="tuitionFeesValue"></Label>
+                        <Label x:Name="fixedChargesValue" ></Label>
+                        <Label x:Name="externalExaminationFeesValue" ></Label>
+                    </StackLayout>
+                </StackLayout>
+                <Label x:Name="OptionalCostsLabel" Text="Optional costs"/>
+                <StackLayout Orientation="Horizontal">
+                    <!--Label Column-->
+                    <StackLayout x:Name="labelOptionnalColumn" Orientation="Vertical">
+                        <Label x:Name="schoolMealsLabel" Text="SchoolMeals"></Label>
+                            <Label Text="Zone"></Label>
+                            <Entry x:Name="ZoneEntry" ></Entry>
+                        <Label x:Name="schoolTransportLabel" Text="SchoolTransport"></Label>
+                            <Label Text="Supervision"></Label>
+                            <Entry x:Name="SupervisionEntry" ></Entry>
+                        <Label x:Name="supervisionLabel" Text="Supervision"></Label>
+                            <Label Text="Support class"></Label>
+                            <Entry x:Name="SupportClassEntry" ></Entry>
+                            <Label Text="Support Type"></Label>
+                            <Entry x:Name="SupportTypeEntry" ></Entry>
+                            <Label Text="Support Type"></Label>
+                            <Entry x:Name="SupportPeriodNumberEntry" ></Entry>
+                        <Label x:Name="supportLabel" Text="Support"></Label>
+                    </StackLayout>
+                    <!--Value Column-->
+                    <StackLayout x:Name="ValueOptionColumn" Orientation="Vertical">
+                        <Label x:Name="schoolMealsValue" ></Label>
+                        <Label x:Name="schoolTransportValue" ></Label>
+                        <Label x:Name="supervisionValue" ></Label>
+                        <Label x:Name="supportValue" ></Label>
+                    </StackLayout>
+                </StackLayout>
+
+
+            </StackLayout>
+
+            <!-- Result label-->
+            <Label x:Name="ResultLabel" HorizontalTextAlignment="Center"></Label>
+
+            <Button Text="Get price" Clicked="Button_Calculate" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="Large" WidthRequest="300" />
+
+            
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

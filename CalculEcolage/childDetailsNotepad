@@ -1,0 +1,88 @@
+//SET external examination fees
+            using CalculEcolage.Models;
+using CalculEcolage.Algorithms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace CalculEcolage
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ChildDetails : ContentPage
+    {
+        GetNumberSep n = new GetNumberSep();
+        
+        string devise = " CHF";
+        public ChildDetails()
+        {
+            InitializeComponent();
+        }
+        protected override async void OnAppearing()
+        {
+            //get the child from previous page
+            Child child = (Child)BindingContext;
+            //Show Child data
+            child.enrolementFee = 200;
+            try
+            {
+                enrolementFeeValue.Text = n.ToNumberFormat(child.enrolementFee) + devise;
+                tuitionFeesValue.Text = n.ToNumberFormat(child.tuitionFees) + devise;
+                fixedChargesValue.Text = n.ToNumberFormat(child.fixedCharges) + devise;
+                externalExaminationFeesValue.Text = n.ToNumberFormat(child.externalExaminationFees) + devise;
+                schoolMealsValue.Text = n.ToNumberFormat(child.schoolMeals) + devise;
+                schoolTransportValue.Text = n.ToNumberFormat(child.schoolTransport) + devise;
+                supervisionValue.Text = n.ToNumberFormat(child.supervision) + devise;
+                supportValue.Text = n.ToNumberFormat(child.support) + devise;
+            }
+            catch (Exception) { }
+        }
+
+        
+
+        
+        //Calculate the total and display errors
+        async void Button_Calculate(object sender, EventArgs e)
+        {
+            string supportName = SupportClassEntry.Text + " " + SupportTypeEntry.Text + " " + SupportPeriodNumberEntry.Text ;
+            //Get all conreponding cost
+            EnrolementFees enrolementFee = await App.Database.GetEnrolementFeesAsync(0);
+            TuitionFees tuitionFees = await App.Database.GetTuitionFeesAsync(YearEntry.Text);
+            FixedCharges fixedCharges = await App.Database.GetFixedChargesAsync(YearEntry.Text);
+            ExternalExaminationFees examinationFees = await App.Database.GetExternalExaminationFeesAsync(YearEntry.Text);
+            
+            SchoolMeals schoolMeals = await App.Database.GetSchoolMealsAsync(YearEntry.Text);
+            SchoolTransport schoolTransport = await App.Database.GetSchoolTransportAsync(ZoneEntry.Text);
+            Supervision supervision = await App.Database.GetSupervisionAsync(SupervisionEntry.Text);
+            Support support = await App.Database.GetSupportAsync(supportName);
+            int totalCost = 0;
+            Child child = (Child)BindingContext;
+            //set mandatory fees Child with entries provided by user
+            child.yearName = YearEntry.Text;
+            child.enrolementFee = enrolementFee.cost;
+            child.tuitionFees = tuitionFees.cost;
+            child.fixedCharges = fixedCharges.cost;
+            child.externalExaminationFees = examinationFees.cost;
+            //set mandatory fees Child with entries provided by user
+            child.schoolMeals = schoolMeals.cost;
+            child.schoolTransport = schoolTransport.cost;
+            child.supervision = supervision.cost;
+            child.support = support.cost;
+
+
+
+
+        }
+        //Display the block to change the parameter
+        public void DisplayChangeClassCost(object sender, EventArgs e)
+        {
+           
+        }
+        
+    }
+    
+}

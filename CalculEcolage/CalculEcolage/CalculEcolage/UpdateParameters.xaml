@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CalculEcolage.UpdateParameters"
+             NavigationPage.HasBackButton="False">
+    <!--Back button-->
+    <NavigationPage.TitleView>
+        <Button ImageSource="Image/backButton.png" Clicked="OnBackClicked" HorizontalOptions="Start" Text="Back" />
+    </NavigationPage.TitleView>
+    
+    <ScrollView>
+        <StackLayout x:Name="MandatoryEntryBlock" Orientation="Vertical" Margin="15"  >
+            <!-- year update -->
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label x:Name="YearLabel" Text="Year" VerticalTextAlignment="Center" Margin="0,0,15,0" ></Label>
+                <Picker x:Name="YearPicker" ItemsSource="{Binding years}" SelectedItem="{Binding yearName}"   Title="Select a year"  WidthRequest="160"/>
+                <Button Text="Delete" Clicked="DeleteYearFeesButton" BackgroundColor="Red" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <Label Text="Update tuition fees" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <!-- TuitionFee -->
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="TuitionFeeCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateTuitionFeeButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+                
+            </StackLayout>
+            <!-- Fixed Charge -->
+            <Label Text="Update fixed charges" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="FixedChargeCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateFixedChargeButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- External examination fees -->
+            <Label Text="Update External examination fees" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="ExternalExaminationFeeCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateExternalExaminationFeeButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- School meals -->
+            <Label Text="School meals" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="SchoolMealsCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateSchoolMealsButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- Wednesday meals -->
+            <Label Text="Wednesday meals" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="WednesdayMealsCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateWednesdayMealsButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- Assistance discount -->
+            <Label Text="Assistance discount" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <Label Text="Children N°"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Picker x:Name="AssistanceDiscountPicker" ItemsSource="{Binding assistanceDiscountName}" SelectedItem="{Binding name}"   Title="Select a discount" WidthRequest="300"/>
+                <Button Text="Delete" Clicked="DeleteAssistanceDiscountButton" BackgroundColor="Red" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="AssistanceDiscountCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateAssistanceDiscountButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- Term discount -->
+            <Label Text="Term discount" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <Label Text="Payment plan"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Picker x:Name="TermDiscountPicker" ItemsSource="{Binding termDiscountName}" SelectedItem="{Binding name}"   Title="Select a payment plan" WidthRequest="300"/>
+                <Button Text="Delete" Clicked="DeleteTermDiscountButton" BackgroundColor="Red" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="TermDiscountCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateTermDiscountButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- School transport -->
+            <Label Text="School transport" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <Label Text="Zone"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Picker x:Name="ZonePicker" ItemsSource="{Binding zone}" SelectedItem="{Binding zone}"   Title="Select a zone" WidthRequest="300"/>
+                <Button Text="Delete" Clicked="DeleteSchoolTransportButton" BackgroundColor="Red" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="SchoolTransportCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateSchoolTransportButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- Supervision -->
+            <Label Text="Supervision" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Picker x:Name="SupervisionPicker" ItemsSource="{Binding supervisionName}" SelectedItem="{Binding name}"   Title="Select a supervision type" WidthRequest="300"/>
+                <Button Text="Delete" Clicked="DeleteSupervisionButton" BackgroundColor="Red" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="SupervisionCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateSupervisionButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            <!-- Support -->
+            <Label Text="Support class" FontSize="22" FontAttributes="Bold" Margin="0,30,0,10"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Picker x:Name="SupportPicker" ItemsSource="{Binding supportName}" SelectedItem="{Binding name}"   Title="Select a support Type" WidthRequest="300"/>
+                <Button Text="Delete" Clicked="DeleteSupportButton" BackgroundColor="Red" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                <Entry x:Name="SupportCost" WidthRequest="160"></Entry>
+                <Button Text="Update" Clicked="UpdateSupportButton" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="24" Margin="15,0,0,0"  HorizontalOptions="EndAndExpand" WidthRequest="120" VerticalOptions="Center"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

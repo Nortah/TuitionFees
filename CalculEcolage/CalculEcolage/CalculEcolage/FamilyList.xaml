@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculEcolage.FamilyList"
+             NavigationPage.HasBackButton="False">
+    <!--Back button-->
+    <NavigationPage.TitleView>
+        <Button ImageSource="Image/backButton.png" Clicked="OnBackClicked" HorizontalOptions="Start" Text="Back" />
+    </NavigationPage.TitleView>
+
+    <StackLayout Margin="50,50,50,50">
+        <Label Text="Families" FontSize="34" HorizontalTextAlignment="Center" Margin="20"></Label>
+        <!-- Add family block -->
+        <StackLayout x:Name="familyNameBlock" IsVisible="False" Margin="20">
+            <Label Text="Family name"></Label>
+            <Entry x:Name="familyNameEntry"></Entry>
+            <Label x:Name="nullErrorLabel" TextColor="Red"></Label>
+            <Label x:Name="usedNameErrorLabel" TextColor="Red"></Label>
+            <Button Text="Add family" Clicked="OnAddClicked" ></Button>
+        </StackLayout>
+        
+        <Grid VerticalOptions = "FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            
+            <ListView Margin="20" x:Name="listView"  ItemSelected="OnFamilySelected" RowHeight="60" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="DeepSkyBlue" Padding="0,0,1,0"  >
+                                <Label Text="{Binding familyName}" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" TextColor="White" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40 "/>
+                                <Label Text="{Binding totalCost}" HorizontalOptions="EndAndExpand"  VerticalTextAlignment="Center" TextColor="White" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40 "/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ImageButton Source="Image/plus_button.png" 
+            AbsoluteLayout.LayoutFlags="PositionProportional"  
+            BackgroundColor="Transparent"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"
+            Clicked="OnPlusClicked" 
+            Margin="0,0,0,50"
+            Grid.Row="1" Grid.Column = "1"/>
+        </Grid>
+
+    </StackLayout>
+
+</ContentPage>
+

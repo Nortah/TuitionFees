@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculEcolage.SetParameters"
+             NavigationPage.HasBackButton="False"
+             >
+    <!--Back button-->
+    <NavigationPage.TitleView>
+        <Button ImageSource="Image/backButton.png" Clicked="OnBackClicked" HorizontalOptions="Start" Text="Back" />
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Margin="30">
+                <BoxView>
+
+                </BoxView>
+                <!--Set Enrolement fees -->
+                <StackLayout Orientation="Vertical" Margin="0,0,0,0">
+                    <Label Text="Set enrolement fee" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout x:Name="ChangeEnrolementFee" Orientation="Horizontal" HorizontalOptions="EndAndExpand" >
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0" />
+                        <StackLayout>
+                            <Entry x:Name="EnrolementCost" VerticalOptions="End" Margin="0,0,60,0" >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorEnrolementMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetEnrolementFees" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set tuition fees -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set tuition fees" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout x:Name="ChangeTuitionFeeByYear" Orientation="Horizontal" HorizontalOptions="EndAndExpand" >
+                        <Label Text="Year" VerticalTextAlignment="Center" Margin="0,0,15,0" HorizontalTextAlignment="Start"/>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Entry x:Name="TuitionFeesYear" Text="{Binding className}"  Margin="0,0,125,0" >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorTuitionYearMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="TuitionFeesCost" Margin="0,0,60,0">
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorTuitionCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetTuitionFees" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <!--Set Assistance discount percentage -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set financial assistant discount percentage" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Children n°" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="AssistanceDiscountName"  Margin="0,0,25,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorAssistanceDiscountYearMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Percentage" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="AssistanceDiscountCost" Margin="0,0,60,0" >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorAssistanceDiscountCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetAssistanceDiscount" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set term discount percentage -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set payment term discount percentage" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Payment plan" VerticalTextAlignment="Center" Margin="0,0,0,0"/>
+                        <StackLayout>
+                            <Entry x:Name="TermDiscountName"  Margin="0,0,25,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorTermDiscountYearMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Percentage" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="TermDiscountCost" Margin="0,0,60,0" >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorTermDiscountCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetTermDiscount" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set fixed charges -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set fixed charges" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" >
+                        <Label Text="Year" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="FixedChargesYear" Text="{Binding className}"  Margin="0,0,125,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorFixedChargesYearMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="FixedChargesCost" Margin="0,0,60,0">
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorFixedChargesCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetFixedCharges" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set School Meals Cost -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set school meals cost" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label Text="Year" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="SchoolMealsYear"   Margin="0,0,125,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorSchoolMealsYearMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="SchoolMealsCost" Margin="0,0,60,0">
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorSchoolMealsCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetSchoolMeals" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set wednesday meals Cost -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set wednesday meals cost" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label Text="Year" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="WednesdayMealsYear"   Margin="0,0,125,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorWednesdayMealsYearMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="WednesdayMealsCost" Margin="0,0,60,0">
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorWednesdayMealsCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetWednesdayMeals" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set School transport Cost -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set school transport cost" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label Text="Zone" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="SchoolTransportZone"   Margin="0,0,120,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorSchoolTransportZone" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="SchoolTransportCost" Margin="0,0,60,0">
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorSchoolTransportCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetSchoolTransport" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set supervision package Cost -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set supervision package cost" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label Text="Name" VerticalTextAlignment="Center" Margin="0,0,5,0"/>
+                        <StackLayout>
+                            <Entry x:Name="SupervisionName"   Margin="0,0,120,0"  >
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">80</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorSupervisionNameMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        </StackLayout>
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <StackLayout>
+                            <Entry x:Name="SupervisionCost" Margin="0,0,60,0">
+                                <Entry.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">200</On>
+                                    </OnPlatform>
+                                </Entry.WidthRequest>
+                            </Entry>
+                            <Label x:Name="errorSupervisionCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        </StackLayout>
+                        <Button Text="Add" Clicked="SetSupervision" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Set support package Cost -->
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Set support package cost" FontSize="22" FontAttributes="Bold" Margin="0,40,0,10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" >
+                        <Label Text="Name" VerticalTextAlignment="Center" Margin="0,0,5,0"/>
+                            <Entry x:Name="SupportName"   Margin="0,0,120,0"  >
+                                    <Entry.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="iOS">80</On>
+                                        </OnPlatform>
+                                    </Entry.WidthRequest>
+                            </Entry>
+                        <Label x:Name="errorSupportNameMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False" />
+                        <Label Text="Price" VerticalTextAlignment="Center" Margin="0,0,15,0"/>
+                        <Entry x:Name="SupportCost" Margin="0,0,60,0">
+                                    <Entry.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="iOS">200</On>
+                                        </OnPlatform>
+                                    </Entry.WidthRequest>
+                                </Entry>
+                        <Label x:Name="errorSupportCostMessage" TextColor="Red" FontAttributes="Italic" IsVisible="False"/>
+                        <Button Text="Add" Clicked="SetSupport" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="20"  HorizontalOptions="EndAndExpand" HeightRequest="34" WidthRequest="120" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+  
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

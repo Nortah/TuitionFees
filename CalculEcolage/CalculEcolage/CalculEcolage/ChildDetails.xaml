@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CalculEcolage.ChildDetails"
+             NavigationPage.HasBackButton="False">
+    <!--Back button-->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button ImageSource="Image/backButton.png" Clicked="OnBackClicked" HorizontalOptions="Start" Text="Back" />
+            <Button  Clicked="OnTransferImageClicked" ImageSource="Image/ic_share.png" HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        
+        
+        <ScrollView x:Name="ChildScrollView">
+            <StackLayout Margin="50,50,50,50" >
+                <!-- Parameters -->
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Entry x:Name="ChildNameValue" FontSize="40"  HorizontalOptions="StartAndExpand" WidthRequest="500" ></Entry>
+                        <Button ImageSource="Image/small_delete_button.png" Clicked="Button_Delete" HorizontalOptions="End"  />
+                    </StackLayout>
+                    
+                    <!-- Year Entry block -->
+                    <StackLayout x:Name="MandatoryEntryBlock" Orientation="Horizontal" >
+                        <StackLayout Orientation="Vertical" Margin="0,0,25,0">
+                            <Label x:Name="YearLabel" Text="Year" WidthRequest="250"></Label>
+                            <Picker x:Name="YearPicker" ItemsSource="{Binding years}" SelectedItem="{Binding yearName}"   Title="Select a year" PropertyChanged="CheckClass"/>
+                        </StackLayout>
+                    <!-- Zone Entry block -->
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Transport"></Label>
+                            <Picker x:Name="ZonePicker" ItemsSource="{Binding zone}" SelectedItem="{Binding zone}"   Title="Select a zone" />
+                        </StackLayout>
+
+                    </StackLayout>
+                    <!-- Optionnals Entries block -->
+                    <StackLayout x:Name="OptionnalEntryBlock" Orientation="Horizontal" >
+                        <StackLayout Orientation="Vertical" Margin="0,0,25,0">
+                            <Label Text="Supervision" WidthRequest="250"></Label>
+                            <Picker x:Name="SupervisionPicker" ItemsSource="{Binding supervisionName}" SelectedItem="{Binding name}" Title="Select a supervision type"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="Support lessons" ></Label>
+                            <Picker x:Name="SupportPicker" ItemsSource="{Binding supportName}" SelectedItem="{Binding name}"   Title="Select a Support Type" />
+                        </StackLayout>
+
+                    </StackLayout>
+                    <!-- Discounts Entries block
+                        <StackLayout Orientation="Vertical" Margin="0,0,25,0">
+                            <Label Text="Financial Assistance Discount" WidthRequest="250"></Label>
+                            <Picker x:Name="AssistanceDiscountPicker" ItemsSource="{Binding assistantDiscountName}" SelectedItem="{Binding name}"   Title="Select a discount" />
+                        </StackLayout> -->
+                    <StackLayout x:Name="DiscountEntryBlock" Orientation="Horizontal" Margin="12">
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="Payment Terms" ></Label>
+                            <Picker x:Name="TermDiscountPicker" ItemsSource="{Binding termDiscountName}" SelectedItem="{Binding name}"   Title="Select a discount" />
+                        </StackLayout>
+
+                    </StackLayout>
+                
+                    <!-- Mandatory Fees -->
+                    <Label x:Name="MandatoryFeesLabel" Text="Mandatory Fees" FontAttributes="Bold" FontSize="Header" Margin="0,15,0,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <!--Label Column-->
+                        <StackLayout x:Name="labelMandatoryColumn" Orientation="Vertical" Margin="12">
+                            <Label x:Name="enrolementFeeLabel" Text="Enrolement fee" Margin="12" Style="{DynamicResource LabelStyle}" VerticalTextAlignment="Start"></Label>
+                            <Label x:Name="tuitionFeesLabel" Text="Tuition fees" Margin="12" VerticalTextAlignment="Start"></Label>
+                            <Label x:Name="fixedChargesLabel" Text="Fixed charges" Margin="12" VerticalTextAlignment="Start"></Label>
+                            <Label x:Name="externalExaminationFeesLabel" Text="External examination fees" Margin="12" VerticalTextAlignment="Start"></Label>
+                        </StackLayout>
+                        <!-- Mandatory Fees -->
+                        <!--Value Column-->
+                        <StackLayout x:Name="ValueColumn" Orientation="Vertical" Margin="24,15,12,12">
+                            <Label x:Name="enrolementFeeValue" Margin="24,12,12,12" VerticalTextAlignment="End"></Label>
+                            <Label x:Name="tuitionFeesValue" Margin="24,12,12,12" VerticalTextAlignment="End"></Label>
+                            <Label x:Name="fixedChargesValue" Margin="24,12,12,12" VerticalTextAlignment="End"></Label>
+                            <Label x:Name="externalExaminationFeesValue" Margin="24,12,12,12" VerticalTextAlignment="End"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <Label x:Name="OptionalCostsLabel" Text="Optional costs" FontAttributes="Bold" FontSize="Header" Margin="0,15,0,0"/>
+                    <!--Optionnal cost columns -->
+                        <StackLayout x:Name="labelOptionnalColumn" Orientation="Vertical">
+
+                            <StackLayout x:Name="assistanceDiscountLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="assistanceDiscountLabel" Text="Financial assistance" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="assistanceDiscountValue" HorizontalOptions="StartAndExpand"  VerticalTextAlignment="Center"></Label>
+                                <CheckBox x:Name="assistanceDiscountCheckBox" HorizontalOptions="Center" PropertyChanged="CheckSiblingAssistance"></CheckBox>
+                            </StackLayout>
+
+                            <StackLayout x:Name="siblingDiscountLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="siblingDiscountLabel" Text="Sibling assistance" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="siblingDiscountValue" HorizontalOptions="StartAndExpand"  VerticalTextAlignment="Center"></Label>
+                                <CheckBox x:Name="siblingDiscountCheckBox" HorizontalOptions="Center" PropertyChanged="CheckFinancialAssistance"></CheckBox>
+                            </StackLayout>
+
+                            <StackLayout x:Name="termDiscountLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="termDiscountLabel" Text="Payment option discount/surcharge" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="termDiscountValue" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+
+                            <StackLayout x:Name="schoolMealsLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="schoolMealsLabel" Text="School meals" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="schoolMealsValue" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center"></Label>
+                                <CheckBox x:Name="schoolMealsCheckBox" HorizontalOptions="Center"></CheckBox>
+                            </StackLayout>
+
+                            <StackLayout x:Name="wednesdayMealsLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="wednesdayMealsLabel" Text="Wednesday meals" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="wednesdayMealsValue" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" ></Label>
+                                <CheckBox x:Name="wednesdayMealsCheckBox" HorizontalOptions="Center"></CheckBox>
+                            </StackLayout>
+
+                            <StackLayout x:Name="schoolTransportLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="schoolTransportLabel" Text="School transport" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="schoolTransportValue" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+
+                            <StackLayout x:Name="supervisionLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="supervisionLabel" Text="Supervision" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="supervisionValue" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+
+                            <StackLayout x:Name="supportLayout" Orientation="Horizontal" Margin="12">
+                                <Label x:Name="supportLabel" Text="Support" Margin="12" WidthRequest="250"></Label>
+                                <Label x:Name="supportValue" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+
+                    </StackLayout>
+
+
+                </StackLayout>
+
+            
+
+                <Button Text="Update price" Clicked="Button_Calculate" BackgroundColor="DeepSkyBlue" TextColor="White" FontSize="Large" WidthRequest="100" Margin="20" />
+                
+                <!-- Result label-->
+                <Label x:Name="ResultLabel" HorizontalTextAlignment="Center" FontSize="42" Margin="20"></Label>
+                
+
+
+                
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
